@@ -1,22 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.text import text_to_word_sequence
-from keras.preprocessing.text import hashing_trick
-import numpy as np
+from keras.preprocessing.text import one_hot
 
 
+"""
 t = Tokenizer()
-tt = text_to_word_sequence
-ttt = hashing_trick
-
 encoded_data = []
+stringdata = []
+with open('../../../blogs/man/male_data.txt', 'r', encoding='latin-1') as f:
+    for line in f:
+        #stringdata.append(line)
+        #data = one_hot(line, 10000)
+        encoded_data.append(line)
+
+t.fit_on_texts(encoded_data)
+#enc_doc = t.texts_to_matrix(stringdata, mode='count')
+print(t.word_index)
+# t.sequences_to_matrix(len(stringdata), stringdata)
+"""
+"""
+data = []
 with open('../Data/test.txt', 'r', encoding='latin-1') as f:
     for line in f:
-        data = ttt(line, 100)
-        encoded_data.append(data)
+        data.append(line)
 
-for i in encoded_data:
-    print(i)
-
-# np.savetxt('test.out', encoded_data)
+a = numpy.array(data)
+numpy.save('numpy_data', a)
+print(a)
+"""
