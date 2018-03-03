@@ -3,8 +3,7 @@ GenderumRevelio
 ===============
 
 
-Add a short description here!
-
+Deep learning project that will analyze text and guess on the authors gender
 
 Description
 ===========
