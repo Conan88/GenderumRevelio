@@ -23,8 +23,8 @@ import logging
 
 from genderumrevelio import __version__
 
-__author__ = "Christoffer Berglund"
-__copyright__ = "Christoffer Berglund"
+__author__ = "Christoffer Berglund, James Khoi Giang"
+__copyright__ = "Christoffer Berglund, James Khoi Giang"
 __license__ = "mit"
 
 _logger = logging.getLogger(__name__)
