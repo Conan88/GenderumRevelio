@@ -4,20 +4,17 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from ..utils.data_utils import get_file
-from ..preprocessing.sequence import _remove_long_seq
 import numpy as np
-import json
 import warnings
 
 
-def load_data(path='imdb.npz', num_words=None, skip_top=0,
+def load_data(path='temp.npz', num_words=None, skip_top=0,
               maxlen=None, seed=113,
               start_char=1, oov_char=2, index_from=3, **kwargs):
-    """Loads the IMDB dataset.
+    """Loads the dataset.
 
     # Arguments
-        path: where to cache the data (relative to `~/.keras/dataset`).
+        path: where to cache the data.
         num_words: max number of words to include. Words are ranked
             by how often they occur (in the training set) and only
             the most frequent words are kept
@@ -52,9 +49,8 @@ def load_data(path='imdb.npz', num_words=None, skip_top=0,
     if kwargs:
         raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
 
-    path = get_file(path,
-                    origin='https://s3.amazonaws.com/text-datasets/imdb.npz',
-                    file_hash='599dadb1135973df5b59232a0e9a887c')
+    path = '../data/hot_numpy.npy'
+
     with np.load(path) as f:
         x_train, labels_train = f['x_train'], f['y_train']
         x_test, labels_test = f['x_test'], f['y_test']
@@ -100,20 +96,4 @@ def load_data(path='imdb.npz', num_words=None, skip_top=0,
     x_test, y_test = np.array(xs[idx:]), np.array(labels[idx:])
 
     return (x_train, y_train), (x_test, y_test)
-
-
-def get_word_index(path='imdb_word_index.json'):
-    """Retrieves the dictionary mapping word indices back to words.
-
-    # Arguments
-        path: where to cache the data (relative to `~/.keras/dataset`).
-
-    # Returns
-        The word index dictionary.
-    """
-    path = get_file(path,
-                    origin='https://s3.amazonaws.com/text-datasets/imdb_word_index.json',
-                    file_hash='bfafd718b763782e994055a2d397834f')
-    with open(path) as f:
-        return json.load(f)
 
