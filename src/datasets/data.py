@@ -1,4 +1,4 @@
-"""IMDB sentiment classification dataset.
+"""Setup for data
 """
 from __future__ import absolute_import
 from __future__ import division
