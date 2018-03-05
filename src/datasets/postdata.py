@@ -73,4 +73,3 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
     validatelabels = validatelabels[indices]
 
     return (traindata, trainlabels), (testingdata, testlabels)
-print(load_data())
