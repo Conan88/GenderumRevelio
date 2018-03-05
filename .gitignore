@@ -1,6 +1,7 @@
 *.txt
 *.npy
 *.npz
+*.pickle
 # Temporary and binary files
 *~
 *.py[cod]
