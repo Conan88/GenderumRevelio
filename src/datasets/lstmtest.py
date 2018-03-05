@@ -19,6 +19,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Embedding
 from keras.layers import LSTM
 from src.datasets.postdata import load_data
+import numpy
 
 
 max_features = 20000
@@ -48,7 +49,7 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 
 print('Train...')
-model.fit(x_train, y_train,
+history_callback = model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=15,
           validation_data=(x_test, y_test))
@@ -56,3 +57,7 @@ score, acc = model.evaluate(x_test, y_test,
                             batch_size=batch_size)
 print('Test score:', score)
 print('Test accuracy:', acc)
+
+loss_history = history_callback.history["loss"]
+numpy_loss_history = numpy.array(loss_history)
+numpy.savetxt("loss_history.txt", numpy_loss_history, delimiter=",")
