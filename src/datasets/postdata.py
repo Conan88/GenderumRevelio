@@ -29,7 +29,7 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
         index_from: index actual words with this index and higher.
 
     # Returns
-        Tuple of Numpy arrays: `(x_train, y_train), (x_test, y_test)`.
+        Tuple of Numpy arrays: `(traindata, trainlabels), (testingdata, testlabels)`.
 
     # Raises
         ValueError: in case `maxlen` is so low
@@ -49,51 +49,28 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
     if kwargs:
         raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
 
-    path = '../data/hot_numpy.npy'
+    path = '../data/postdata.npz'
 
     with np.load(path) as f:
-        x_train, labels_train = f['x_train'], f['y_train']
-        x_test, labels_test = f['x_test'], f['y_test']
+        traindata, trainlabels = f['traindata'], f['trainlabels']
+        validationdata, validatelabels = f['validationdata'], f['validationlabels']
+        testingdata, testlabels = f['testingdata'], f['testinglabels']
 
     np.random.seed(seed)
-    indices = np.arange(len(x_train))
+    indices = np.arange(len(traindata))
     np.random.shuffle(indices)
-    x_train = x_train[indices]
-    labels_train = labels_train[indices]
+    traindata = traindata[indices]
+    trainlabels = trainlabels[indices]
 
-    indices = np.arange(len(x_test))
+    indices = np.arange(len(testingdata))
     np.random.shuffle(indices)
-    x_test = x_test[indices]
-    labels_test = labels_test[indices]
+    testingdata = testingdata[indices]
+    testlabels = testlabels[indices]
 
-    xs = np.concatenate([x_train, x_test])
-    labels = np.concatenate([labels_train, labels_test])
+    indices = np.arange(len(validationdata))
+    np.random.shuffle(indices)
+    validationdata = validationdata[indices]
+    validatelabels = validatelabels[indices]
 
-    if start_char is not None:
-        xs = [[start_char] + [w + index_from for w in x] for x in xs]
-    elif index_from:
-        xs = [[w + index_from for w in x] for x in xs]
-
-    if maxlen:
-        xs, labels = _remove_long_seq(maxlen, xs, labels)
-        if not xs:
-            raise ValueError('After filtering for sequences shorter than maxlen=' +
-                             str(maxlen) + ', no sequence was kept. '
-                             'Increase maxlen.')
-    if not num_words:
-        num_words = max([max(x) for x in xs])
-
-    # by convention, use 2 as OOV word
-    # reserve 'index_from' (=3 by default) characters:
-    # 0 (padding), 1 (start), 2 (OOV)
-    if oov_char is not None:
-        xs = [[w if (skip_top <= w < num_words) else oov_char for w in x] for x in xs]
-    else:
-        xs = [[w for w in x if skip_top <= w < num_words] for x in xs]
-
-    idx = len(x_train)
-    x_train, y_train = np.array(xs[:idx]), np.array(labels[:idx])
-    x_test, y_test = np.array(xs[idx:]), np.array(labels[idx:])
-
-    return (x_train, y_train), (x_test, y_test)
-
+    return (traindata, trainlabels), (testingdata, testlabels)
+print(load_data())
