@@ -17,8 +17,8 @@ from __future__ import print_function
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding
-from keras.layers import LSTM
-from src.datasets.postdata import load_data
+from keras.layers import LSTM, Bidirectional
+from postdata import load_data
 import numpy
 
 
@@ -27,7 +27,7 @@ maxlen = 80  # cut texts after this number of words (among top max_features most
 batch_size = 32
 
 print('Loading data...')
-(x_train, y_train), (x_test, y_test) = load_data()
+(x_train, y_train), (x_test, y_test) = load_data
 print(len(x_train), 'train sequences')
 print(len(x_test), 'test sequences')
 
@@ -40,7 +40,9 @@ print('x_test shape:', x_test.shape)
 print('Build model...')
 model = Sequential()
 model.add(Embedding(max_features, 128))
-model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
+model.add(Bidirectional(LSTM(128, dropout=0.2, recurrent_dropout=0.2)))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(50, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
 # try using different optimizers and different optimizer configs
@@ -59,5 +61,11 @@ print('Test score:', score)
 print('Test accuracy:', acc)
 
 loss_history = history_callback.history["loss"]
+print("-------")
+print(loss_history)
+print("-------")
+print(history_callback)
+
+
 numpy_loss_history = numpy.array(loss_history)
 numpy.savetxt("loss_history.txt", numpy_loss_history, delimiter=",")
