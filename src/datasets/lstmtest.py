@@ -27,7 +27,7 @@ maxlen = 80  # cut texts after this number of words (among top max_features most
 batch_size = 32
 
 print('Loading data...')
-(x_train, y_train), (x_test, y_test) = load_data
+(x_train, y_train), (x_test, y_test) = load_data()
 print(len(x_train), 'train sequences')
 print(len(x_test), 'test sequences')
 
