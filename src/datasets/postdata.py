@@ -53,7 +53,6 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
 
     with np.load(path) as f:
         traindata, trainlabels = f['traindata'], f['trainlabels']
-        validationdata, validatelabels = f['validationdata'], f['validationlabels']
         testingdata, testlabels = f['testingdata'], f['testinglabels']
 
     np.random.seed(seed)
@@ -67,9 +66,5 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
     testingdata = testingdata[indices]
     testlabels = testlabels[indices]
 
-    indices = np.arange(len(validationdata))
-    np.random.shuffle(indices)
-    validationdata = validationdata[indices]
-    validatelabels = validatelabels[indices]
 
     return (traindata, trainlabels), (testingdata, testlabels)

@@ -13,19 +13,16 @@ with open(path, "rb") as file:
     np.random.shuffle(man)
     np.random.shuffle(women)
 
-    manpt1 = man[0:171744] # nesten 50%
-    manpt2 = man[171744:257616] # ca. 25%
-    manpt3 = man[257616:] # sammsies
+    manpt1 = man[0:257616] # ca. 75%
+    manpt3 = man[257616:]
 
-    womanpt1 = women[0:167336]  # nesten 50%
-    womanpt2 = women[167336:251004]  # ca. 25%
-    womanpt3 = women[251004:]  # sammsies
+    womanpt1 = women[0:251004]  # ca. 75%
+    womanpt3 = women[251004:]
 
     print("Total man posts:" + str(len(man)))
     print("Total woman posts:" + str(len(women)))
 
     trainlabels = [1]*len(manpt1) + [0]*len(womanpt1)
-    validationlabels = [1] * len(manpt2) + [0] * len(womanpt2)
     testinglabels = [1] * len(manpt3) + [0] * len(womanpt3)
 
     print(manpt1)
@@ -33,8 +30,7 @@ with open(path, "rb") as file:
     print(womanpt1)
     traindata = np.concatenate([manpt1, womanpt1])
     print(len(traindata))
-    validationdata = np.concatenate([manpt2, womanpt2])
     testingdata= np.concatenate([manpt3, womanpt3])
 
-    np.savez("postdata", traindata=traindata, trainlabels=trainlabels, validationdata=validationdata, validationlabels=validationlabels,
+    np.savez("postdatanoval", traindata=traindata, trainlabels=trainlabels,
              testingdata=testingdata, testinglabels= testinglabels)

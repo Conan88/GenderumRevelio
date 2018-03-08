@@ -19,6 +19,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Embedding
 from keras.layers import LSTM, Bidirectional
 from postdata import load_data
+import pickle
 import numpy
 
 
@@ -60,6 +61,9 @@ score, acc = model.evaluate(x_test, y_test,
 print('Test score:', score)
 print('Test accuracy:', acc)
 
+with open("call.pickle", "wb") as file:
+    pickle.dump(history_callback, file)
+
 loss_history = history_callback.history["loss"]
 print("-------")
 print(loss_history)
@@ -68,4 +72,4 @@ print(history_callback)
 
 
 numpy_loss_history = numpy.array(loss_history)
-numpy.savetxt("loss_history.txt", numpy_loss_history, delimiter=",")
+numpy.savetxt("loss_history3.txt", numpy_loss_history, delimiter=",")
