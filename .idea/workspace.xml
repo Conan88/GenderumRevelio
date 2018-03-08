@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0817186b-251b-4784-8085-9d0131911033" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/datasets/lstmtest.py" afterPath="$PROJECT_DIR$/src/datasets/lstmtest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/datasets/postdata.py" afterPath="$PROJECT_DIR$/src/datasets/postdata.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/misc/datasplitter.py" afterPath="$PROJECT_DIR$/src/misc/datasplitter.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,7 +51,7 @@
       <file leaf-file-name="blogpoststextscraper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/misc/blogpoststextscraper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
+            <state relative-caret-position="884">
               <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
@@ -74,8 +71,8 @@
       <file leaf-file-name="postdata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/datasets/postdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="493">
+              <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -853,9 +850,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/misc/datasplitter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="75" lean-forward="false" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/misc/blogpoststextscraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
+        <state relative-caret-position="884">
           <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
@@ -871,18 +876,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/misc/datasplitter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="75" lean-forward="false" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/datasets/postdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="493">
+          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
           <folding />
         </state>
       </provider>
