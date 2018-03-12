@@ -64,7 +64,7 @@ print('Test score:', score)
 print('Test accuracy:', acc)
 
 i = 1
-prename = "network"
+prename = "../data/network"
 
 while os.path.isdir(prename + str(i)):
     i += 1

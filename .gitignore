@@ -21,6 +21,7 @@ __pycache__/*
 .project
 .pydevproject
 .settings
+.idea/
 .idea
 
 # Package files
