@@ -31,11 +31,11 @@ from keras import backend as K
 import tensorflow as tf
 
 
-#os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-#config = tf.ConfigProto()
-#config.gpu_options.allow_growth = True
-#sess = tf.Session(config = config)
-#K.set_session(sess)
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config = config)
+K.set_session(sess)
 
 max_features = 20000
 maxlen = 80  # cut texts after this number of words (among top max_features most common words)
