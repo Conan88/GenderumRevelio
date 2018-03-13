@@ -17,23 +17,25 @@ from __future__ import print_function
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding
-from keras.layers import LSTM, Bidirectional
+from keras.layers import LSTM, Bidirectional, Dropout
 from postdata import load_data
 import shutil
 import json
 import os
 import time
 import datetime
+import matplotlib.pyplot as pl
+import pandas as pd
 
 from keras import backend as K
 import tensorflow as tf
 
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-sess = tf.Session(config = config)
-K.set_session(sess)
+#os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+#config = tf.ConfigProto()
+#config.gpu_options.allow_growth = True
+#sess = tf.Session(config = config)
+#K.set_session(sess)
 
 max_features = 20000
 maxlen = 80  # cut texts after this number of words (among top max_features most common words)
@@ -55,8 +57,11 @@ model = Sequential()
 model.add(Embedding(max_features, 200))
 model.add(Bidirectional(LSTM(200, dropout=0.2, recurrent_dropout=0.2)))
 model.add(Dense(600, activation='relu'))
+model.add(Dropout(0.2))
 model.add(Dense(400, activation='relu'))
+model.add(Dropout(0.2))
 model.add(Dense(250, activation='relu'))
+model.add(Dropout(0.2))
 model.add(Dense(50, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
@@ -92,6 +97,14 @@ try:
     print("Saved callback history")
 except:
     print("Failed save callback")
+
+try:
+    df = pd.DataFrame(history_callback.history)
+    df.plot()
+    pl.savefig(os.path.join(path, "epoch.png"))
+    print("Saved pyplot of callback info")
+except:
+    print("Failed to save pyplot of callback info")
 
 # Save the actual file/setting (i.e. a copy of this script)
 try:
