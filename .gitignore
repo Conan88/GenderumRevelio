@@ -46,4 +46,4 @@ docs/_build/*
 cover/*
 MANIFEST
 
-src/data/*
+data/*

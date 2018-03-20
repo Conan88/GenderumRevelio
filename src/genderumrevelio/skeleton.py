@@ -21,7 +21,9 @@ import argparse
 import sys
 import logging
 
-from genderumrevelio import __version__
+#from genderumrevelio import __version__
+from .networkconfigs import lstmtest
+from .datasets.postdata import load_data
 
 __author__ = "Christoffer Berglund, James Khoi Giang"
 __copyright__ = "Christoffer Berglund, James Khoi Giang"
@@ -105,6 +107,8 @@ def main(args):
     _logger.debug("Starting crazy calculations...")
     print("The {}-th Fibonacci number is {}".format(args.n, fib(args.n)))
     _logger.info("Script ends here")
+
+    lstmtest.lstm_run(load_data())
 
 
 def run():

@@ -17,25 +17,13 @@ from __future__ import print_function
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding
-from keras.layers import LSTM, Bidirectional, Dropout
+from keras.layers import LSTM, Bidirectional
 from postdata import load_data
 import shutil
 import json
 import os
 import time
 import datetime
-import matplotlib.pyplot as pl
-import pandas as pd
-
-from keras import backend as K
-import tensorflow as tf
-
-
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-sess = tf.Session(config = config)
-K.set_session(sess)
 
 max_features = 20000
 maxlen = 80  # cut texts after this number of words (among top max_features most common words)
@@ -54,14 +42,9 @@ print('x_test shape:', x_test.shape)
 
 print('Build model...')
 model = Sequential()
-model.add(Embedding(max_features, 200))
-model.add(Bidirectional(LSTM(200, dropout=0.2, recurrent_dropout=0.2)))
-model.add(Dense(600, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(400, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(250, activation='relu'))
-model.add(Dropout(0.2))
+model.add(Embedding(max_features, 128))
+model.add(Bidirectional(LSTM(128, dropout=0.2, recurrent_dropout=0.2)))
+model.add(Dense(100, activation='relu'))
 model.add(Dense(50, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
@@ -73,8 +56,8 @@ model.compile(loss='binary_crossentropy',
 print('Train...')
 history_callback = model.fit(x_train, y_train,
           batch_size=batch_size,
-          epochs=80,
-          validation_data=(x_test, y_test))
+          epochs=40,
+	  validation_data=(x_test, y_test))
 score, acc = model.evaluate(x_test, y_test,
                             batch_size=batch_size)
 print('Test score:', score)
@@ -89,42 +72,22 @@ path = prename + str(i)
 os.mkdir(path)
 
 # Save data on loss and accuracy for each epoch
-try:
-    with open(os.path.join(path, "callback.json"), "w") as file:
-        j = json.dumps(history_callback.history)
-        file.write(j)
-    print(history_callback.history)
-    print("Saved callback history")
-except:
-    print("Failed save callback")
-
-try:
-    df = pd.DataFrame(history_callback.history)
-    df.plot()
-    pl.savefig(os.path.join(path, "epoch.png"))
-    print("Saved pyplot of callback info")
-except:
-    print("Failed to save pyplot of callback info")
+with open(os.path.join(path, "callback.json"), "w") as file:
+    j = json.dumps(history_callback.history)
+    file.write(j)
+print(history_callback.history)
+print("Saved callback history")
 
 # Save the actual file/setting (i.e. a copy of this script)
-try:
-    shutil.copy(__file__, os.path.join(path, os.path.basename(__file__)))
-    "Copied file"
-except:
-    print("Failed to copy source file")
+shutil.copy(__file__, os.path.join(path, os.path.basename(__file__)))
+"Copied file"
 
 # Save the test accuracy and test score
-try:
-    with open(os.path.join(path, "results.txt"), "w") as file:
-        file.write(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
-        file.write('Test score: ' + str(score) + "\n")
-        file.write('Test accuracy: ' + str(acc) + "\n")
-    print("Saved test results")
-except:
-    print("Failed to save test results")
+with open(os.path.join(path, "results.txt"), "w") as file:
+    file.write(st=datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
+    file.write('Test score: ' + str(score) + "\n")
+    file.write('Test accuracy: ' + str(acc) + "\n")
+print("Saved test results")
 
-try:
-    model.save(os.path.join(path, "my_model.h5"))
-    print("Saved model")
-except:
-    print("Failed to save model")
+model.save(os.path.join(path, "my_model.h5"))
+print("Saved model")
