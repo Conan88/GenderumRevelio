@@ -75,4 +75,3 @@ def lstm_run(load_data):
     print('Test accuracy:', acc)
 
     return (history_callback.history, acc, score, model)
-lstm_run()

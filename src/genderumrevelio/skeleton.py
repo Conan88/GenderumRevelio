@@ -20,10 +20,11 @@ from __future__ import division, print_function, absolute_import
 import argparse
 import sys
 import logging
+from genderumrevelio import __version__
 
-#from genderumrevelio import __version__
-from .networkconfigs import lstmtest
-from .datasets.postdata import load_data
+# Our imports
+from networkconfigs import lstmtest
+from datasets.postdata import load_data
 
 __author__ = "Christoffer Berglund, James Khoi Giang"
 __copyright__ = "Christoffer Berglund, James Khoi Giang"

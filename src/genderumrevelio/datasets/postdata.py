@@ -6,7 +6,7 @@ from __future__ import print_function
 
 import numpy as np
 import warnings
-
+import os
 
 def load_data(path='temp.npz', num_words=None, skip_top=0,
               maxlen=None, seed=113,
@@ -49,8 +49,8 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
     if kwargs:
         raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
 
-    path = '../data/postdatanoval.npz'
-
+    path = './data/postdatanoval.npz'
+    print(os.getcwd())
     with np.load(path) as f:
         traindata, trainlabels = f['traindata'], f['trainlabels']
         testingdata, testlabels = f['testingdata'], f['testinglabels']
