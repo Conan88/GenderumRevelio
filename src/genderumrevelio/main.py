@@ -25,6 +25,9 @@ from genderumrevelio import __version__
 # Our imports
 from networkconfigs import lstmtest
 from datasets.postdata import load_data
+from data_logging import local_logging
+from data_logging import remote_logging
+
 
 __author__ = "Christoffer Berglund, James Khoi Giang"
 __copyright__ = "Christoffer Berglund, James Khoi Giang"
@@ -87,7 +90,9 @@ def main(args):
     _logger.debug("Starting crazy calculations...")
     _logger.info("Script ends here")
 
-    lstmtest.lstm_run(load_data())
+    log = lstmtest.lstm_run(load_data())
+    local_logging(log)
+    remote_logging(log)
 
 
 def run():
