@@ -91,6 +91,7 @@ def main(args):
     _logger.info("Script ends here")
 
     log = lstmtest.lstm_run(load_data())
+    #  TODO: add timestamp and pass them to logging
     local_logging(log)
     remote_logging(log)
 
