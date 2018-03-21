@@ -49,7 +49,7 @@ def load_data(path='temp.npz', num_words=None, skip_top=0,
     if kwargs:
         raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
 
-    path = './data/postdatanoval.npz'
+    path = '../data/postdatanoval.npz'
     print(os.getcwd())
     with np.load(path) as f:
         traindata, trainlabels = f['traindata'], f['trainlabels']
