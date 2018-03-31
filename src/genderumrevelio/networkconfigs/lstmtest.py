@@ -21,7 +21,7 @@ from keras.layers import LSTM, Bidirectional, Dropout
 import os
 
 from keras import backend as K
-import tensorflow as tf
+#import tensorflow as tf
 
 def lstm_run(load_data):
 
@@ -48,15 +48,15 @@ def lstm_run(load_data):
 
     print('Build model...')
     model = Sequential()
-    model.add(Embedding(max_features, 200))
-    model.add(Bidirectional(LSTM(200, dropout=0.2, recurrent_dropout=0.2)))
-    model.add(Dense(600, activation='relu'))
+    model.add(Embedding(max_features, 2))
+    model.add(Bidirectional(LSTM(2, dropout=0.2, recurrent_dropout=0.2)))
+    model.add(Dense(6, activation='relu'))
     model.add(Dropout(0.2))
-    model.add(Dense(400, activation='relu'))
+    model.add(Dense(4, activation='relu'))
     model.add(Dropout(0.2))
-    model.add(Dense(250, activation='relu'))
+    model.add(Dense(2, activation='relu'))
     model.add(Dropout(0.2))
-    model.add(Dense(50, activation='relu'))
+    model.add(Dense(2, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
 
     # try using different optimizers and different optimizer configs
@@ -67,7 +67,7 @@ def lstm_run(load_data):
     print('Train...')
     history_callback = model.fit(x_train, y_train,
               batch_size=batch_size,
-              epochs=80,
+              epochs=1,
               validation_data=(x_test, y_test))
     score, acc = model.evaluate(x_test, y_test,
                                 batch_size=batch_size)

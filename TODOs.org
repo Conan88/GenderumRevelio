@@ -1,3 +1,4 @@
 
 * Notes
-
+** Logging
+Tester logging fra laptop
