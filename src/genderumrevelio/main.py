@@ -92,8 +92,21 @@ def main(args):
 
     log = lstmtest.lstm_run(load_data())
     #  TODO: add timestamp and pass them to logging
-    local_logging(log)
-    remote_logging(log)
+    try:
+        local_logging(log)
+    except Exception as e:
+        print("Local error:")
+        print("args:", e.args)
+        print("traceback:", e.with_traceback)
+        print("e:", e)
+    try:
+        remote_logging(log)
+    except Exception as e:
+        print("Remote error:")
+        print("args:", e.args)
+        print("traceback:", e.with_traceback)
+        print("e:", e)
+
 
 
 def run():
