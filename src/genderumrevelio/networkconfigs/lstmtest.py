@@ -21,15 +21,17 @@ from keras.layers import LSTM, Bidirectional, Dropout
 import os
 
 from keras import backend as K
-#import tensorflow as tf
+import tensorflow as tf
+from keras import optimizers
+
 
 def lstm_run(load_data):
 
-    #os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-    #config = tf.ConfigProto()
-    #config.gpu_options.allow_growth = True
-    #sess = tf.Session(config = config)
-    #K.set_session(sess)
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    sess = tf.Session(config = config)
+    K.set_session(sess)
 
     max_features = 20000
     maxlen = 80  # cut texts after this number of words (among top max_features most common words)
@@ -59,9 +61,11 @@ def lstm_run(load_data):
     model.add(Dense(2, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
 
+
+    adam = optimizers.Adam(lr=0.1)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
-                  optimizer='adam',
+                  optimizer=adam,
                   metrics=['accuracy'])
 
     print('Train...')

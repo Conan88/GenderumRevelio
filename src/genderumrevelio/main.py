@@ -20,7 +20,7 @@ from __future__ import division, print_function, absolute_import
 import argparse
 import sys
 import logging
-from genderumrevelio import __version__
+#from genderumrevelio import __version__
 
 # Our imports
 from networkconfigs import lstmtest
@@ -49,8 +49,8 @@ def parse_args(args):
         description="Runner the neural network")
     parser.add_argument(
         '--version',
-        action='version',
-        version='GenderumRevelio {ver}'.format(ver=__version__))
+        action='version')
+       # version='GenderumRevelio {ver}'.format(ver=__version__))
     parser.add_argument(
         '-v',
         '--verbose',
