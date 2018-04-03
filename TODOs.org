@@ -1,4 +1,12 @@
 
 * Notes
-** Logging
-Tester logging fra laptop
+
+* TODO Learning rates
+- Learning rate [3/7]
+  - [X] 0.1
+  - [ ] 0.01
+  - [ ] 0.001
+  - [X] 0.0001
+  - [ ] 0.00001
+  - [ ] 0.000001
+  - [X] 0.0000001
