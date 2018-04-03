@@ -1,6 +1,12 @@
 
 * Notes
+[[file:src/genderumrevelio/networkconfigs/lstmtest.py][lstm config]]
+Learning rate at 0.1 and 0.0000001 seams to be too much. 
+Then the rate is at 8.1, which is much more than usual(about 0.8).
 
+Learning rate at 0.001 is promising. 
+
+When running with 0.0000001 it crashed. Maybe to low learning rate?
 * TODO Learning rates
 - Learning rate [3/7]
   - [X] 0.1
