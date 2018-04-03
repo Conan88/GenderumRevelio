@@ -29,11 +29,11 @@ def remote_log(log):
 
     """Send finalscore"""
     json_data = json.dumps({"logging_id":pk_id, "final_acc":final_acc, "score":score})
-    r = requests.post(address, data = json_data, headers = headers)
+    r = requests.post(address, data=json_data, headers=headers)
 
     """Send trainingdata"""
     for i in range(0, len(val_acc)):
-        json_data = json.dums({"epoch":i, "val_loss":val_loss[i], "val_acc":val_acc[i],
+        json_data = json.dumps({"epoch":i, "val_loss":val_loss[i], "val_acc":val_acc[i],
                                "loss":loss[i], "acc":acc[i], "fk_finalscore":pk_id})
-        r = requests.post(address, data = json_data, headers = headers)
+        r = requests.post(address, data=json_data, headers=headers)
 
