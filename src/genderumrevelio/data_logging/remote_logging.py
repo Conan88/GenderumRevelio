@@ -11,11 +11,6 @@ def remote_log(log):
     :returns: TODO
 
     """
-    """Setup for post request"""
-    pk_id = 1
-    headers = {'Content-type': 'application/json'}
-    address = "http://188.166.124.208/logging/"
-
     """Getting the data from keras"""
     trainingdata = log[0]
     final_acc = log[1]
@@ -27,13 +22,18 @@ def remote_log(log):
     loss = trainingdata['loss']
     acc = trainingdata['acc']
 
+    """Setup for post request"""
+    pk_id = str(datetime.datetime.now())
+    headers = {'Content-type': 'application/json'}
+    address = "http://188.166.124.208/logging/"
+
     """Send finalscore"""
-    json_data = json.dumps({"logging_id":pk_id, "final_acc":final_acc, "score":score})
+    json_data = json.dumps({"logging_id": pk_id, "final_acc": final_acc, "score": score})
     r = requests.post(address, data=json_data, headers=headers)
 
     """Send trainingdata"""
     for i in range(0, len(val_acc)):
-        json_data = json.dumps({"epoch":i, "val_loss":val_loss[i], "val_acc":val_acc[i],
-                               "loss":loss[i], "acc":acc[i], "fk_finalscore":pk_id})
+        json_data = json.dumps({"epoch": i, "val_loss": val_loss[i], "val_acc": val_acc[i],
+                               "loss": loss[i], "acc": acc[i], "fk_finalscore": pk_id})
         r = requests.post(address, data=json_data, headers=headers)
 
