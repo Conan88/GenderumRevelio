@@ -37,7 +37,7 @@ def log(log):
     # Save data on loss and accuracy for each epoch
     try:
         with open(os.path.join(path, "callback.json"), "w") as file:
-            j = json.dumps(trainingdata)
+            j = json.dumps(trainingdata, indent=4, sort_keys=True)
             file.write(j)
         print("Saved callback history")
     except:
