@@ -52,13 +52,13 @@ def lstm_run(load_data):
     model = Sequential()
     model.add(Embedding(max_features, 200))
     model.add(Bidirectional(LSTM(200, dropout=0.2, recurrent_dropout=0.2)))
-    model.add(Dense(600, activation='relu'))
+    model.add(Dense(600, activation='tanh'))
     model.add(Dropout(0.2))
-    model.add(Dense(400, activation='relu'))
+    model.add(Dense(400, activation='tanh'))
     model.add(Dropout(0.2))
-    model.add(Dense(250, activation='relu'))
+    model.add(Dense(250, activation='tanh'))
     model.add(Dropout(0.2))
-    model.add(Dense(50, activation='relu'))
+    model.add(Dense(50, activation='tanh'))
     model.add(Dense(1, activation='sigmoid'))
 
 
