@@ -13,6 +13,7 @@ def log(log):
     final_acc = log[1]
     score = log[2]
     model = log[3]
+    name = log[4]
 
     try:
         if not os.path.isdir("../data"):
@@ -54,7 +55,7 @@ def log(log):
 
     # Save the actual file/setting (i.e. a copy of this script)
     try:
-        shutil.copy(__file__, os.path.join(path, os.path.basename(__file__)))
+        shutil.copy(name, os.path.join(path, os.path.basename(name)))
         "Copied file"
     except:
         print("Failed to copy source file")
