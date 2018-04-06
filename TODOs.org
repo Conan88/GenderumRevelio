@@ -7,12 +7,17 @@ Then the rate is at 8.1, which is much more than usual(about 0.8).
 Learning rate at 0.001 is promising. 
 
 When running with 0.0000001 it crashed. Maybe to low learning rate?
+
+Learning rate at 0.0001 has bin the best up to now. Results are about 54%. 
+
+Trying tanh as activation, based on tips for Morten Goodwin.
+
 * TODO Learning rates
-- Learning rate [3/7]
-  - [X] 0.1
-  - [ ] 0.01
+- Learning rate [5/7]
+  - [X] 0.1 fail(low acc)
+  - [X] 0.01 fail(low acc)
   - [ ] 0.001
-  - [X] 0.0001
+  - [X] 0.0001 best til now
   - [ ] 0.00001
-  - [ ] 0.000001
-  - [X] 0.0000001
+  - [X] 0.000001 fail
+  - [X] 0.0000001 fail
