@@ -71,7 +71,7 @@ def lstm_run(load_data):
     print('Train...')
     history_callback = model.fit(x_train, y_train,
               batch_size=batch_size,
-              epochs=1,
+              epochs=20,
               validation_data=(x_test, y_test))
     score, acc = model.evaluate(x_test, y_test,
                                 batch_size=batch_size)
