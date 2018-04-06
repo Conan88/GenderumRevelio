@@ -62,7 +62,7 @@ def lstm_run(load_data):
     model.add(Dense(1, activation='sigmoid'))
 
 
-    adam = optimizers.Adam(lr=0.1)
+    adam = optimizers.Adam(lr=0.0001)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
                   optimizer=adam,
@@ -78,4 +78,4 @@ def lstm_run(load_data):
     print('Test score:', score)
     print('Test accuracy:', acc)
 
-    return (history_callback.history, acc, score, model)
+    return (history_callback.history, acc, score, model, os.path.abspath(__file__))

@@ -13,6 +13,7 @@ def log(log):
     final_acc = log[1]
     score = log[2]
     model = log[3]
+    name = log[4]
 
     try:
         if not os.path.isdir("../data"):
@@ -37,7 +38,7 @@ def log(log):
     # Save data on loss and accuracy for each epoch
     try:
         with open(os.path.join(path, "callback.json"), "w") as file:
-            j = json.dumps(trainingdata)
+            j = json.dumps(trainingdata, indent=4, sort_keys=True)
             file.write(j)
         print("Saved callback history")
     except:
@@ -54,7 +55,7 @@ def log(log):
 
     # Save the actual file/setting (i.e. a copy of this script)
     try:
-        shutil.copy(__file__, os.path.join(path, os.path.basename(__file__)))
+        shutil.copy(name, os.path.join(path, os.path.basename(name)))
         "Copied file"
     except:
         print("Failed to copy source file")
