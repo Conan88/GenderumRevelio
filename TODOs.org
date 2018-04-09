@@ -12,6 +12,11 @@ Learning rate at 0.0001 has bin the best up to now. Results are about 54%.
 
 Trying tanh as activation, based on tips for Morten Goodwin.
 
+
+** Maxlen
+   Seams like maxlen change form 80 to 1000 has improbed the accuracy cuite a bit!
+   That is interesting to see, and this as maybe bin one of our big errors.
+
 * TODO Learning rates
 - Learning rate [5/7]
   - [X] 0.1 fail(low acc)

@@ -34,7 +34,7 @@ def lstm_run(load_data):
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 2000  # cut texts after this number of words (among top max_features most common words)
+    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
     batch_size = 164
 
     print('Loading data...')
@@ -50,22 +50,21 @@ def lstm_run(load_data):
 
     print('Build model...')
     model = Sequential()
-    model.add(Embedding(max_features, 200))
-    model.add(Bidirectional(LSTM(200, dropout=0.2, recurrent_dropout=0.2)))
-    model.add(Dense(600, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(400, activation='relu'))
-    model.add(Dropout(0.2))
-    model.add(Dense(250, activation='relu'))
-    model.add(Dropout(0.2))
+    model.add(Embedding(max_features, 120))
+    model.add(Bidirectional(LSTM(150, return_sequences=True)))
+    model.add(Bidirectional(LSTM(150)))
+    model.add(Dense(200, activation='relu'))
+    model.add(Dropout(0.3))
+    model.add(Dense(150, activation='relu'))
+    model.add(Dropout(0.5))
     model.add(Dense(50, activation='relu'))
     model.add(Dense(1, activation='sigmoid'))
 
 
-    adam = optimizers.Adam(lr=0.0001)
+    adam = optimizers.Adam(lr=0.01)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
-                  optimizer=adam,
+                  optimizer='adam',
                   metrics=['accuracy'])
 
     print('Train...')
