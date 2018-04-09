@@ -63,7 +63,7 @@ def log(log):
     # Save the test accuracy and test score
     try:
         with open(os.path.join(path, "results.txt"), "w") as file:
-            file.write(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
+            file.write(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n")
             file.write('Test score: ' + str(score) + "\n")
             file.write('Test accuracy: ' + str(final_acc) + "\n")
         print("Saved test results")
