@@ -34,7 +34,7 @@ def lstm_run(load_data):
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
+    maxlen = 1500  # cut texts after this number of words (among top max_features most common words)
     batch_size = 164
 
     print('Loading data...')
@@ -50,18 +50,17 @@ def lstm_run(load_data):
 
     print('Build model...')
     model = Sequential()
-    model.add(Embedding(max_features, 120))
-    model.add(Bidirectional(LSTM(150, return_sequences=True)))
-    model.add(Bidirectional(LSTM(150)))
+    model.add(Embedding(max_features, 1000))
+    model.add(Bidirectional(LSTM(200, return_sequences=True)))
+    model.add(Bidirectional(LSTM(200)))
     model.add(Dense(200, activation='relu'))
-    model.add(Dropout(0.3))
     model.add(Dense(150, activation='relu'))
-    model.add(Dropout(0.5))
     model.add(Dense(50, activation='relu'))
-    model.add(Dense(1, activation='sigmoid'))
+    model.add(Dropout(0.3))
+    #model.add(Dense(1, activation='sigmoid'))
+    model.add(tf.keras.backend.round(Dense(1, activation='sigmoid')))
 
-
-    adam = optimizers.Adam(lr=0.01)
+    adam = optimizers.Adam(lr=0.1)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
                   optimizer='adam',
@@ -70,7 +69,7 @@ def lstm_run(load_data):
     print('Train...')
     history_callback = model.fit(x_train, y_train,
               batch_size=batch_size,
-              epochs=20,
+              epochs=10,
               validation_data=(x_test, y_test))
     score, acc = model.evaluate(x_test, y_test,
                                 batch_size=batch_size)

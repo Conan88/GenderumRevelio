@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0817186b-251b-4784-8085-9d0131911033" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/genderumrevelio/main.py" afterPath="$PROJECT_DIR$/src/genderumrevelio/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py" afterPath="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/russian.py" afterPath="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/russian.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +33,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="lstmtest.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="lstmtest.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="63" column="35" lean-forward="true" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+                <state relative-caret-position="561">
+                  <caret line="60" column="67" lean-forward="false" selection-start-line="60" selection-start-column="67" selection-end-line="60" selection-end-column="67" />
                   <folding>
                     <element signature="e#459#496#0" expanded="true" />
                   </folding>
@@ -43,10 +45,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="cnntest.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="cnntest.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/cnntest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="798">
+                <state relative-caret-position="1054">
                   <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
                   <folding>
                     <element signature="e#176#213#0" expanded="true" />
@@ -67,11 +69,23 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/genderumrevelio/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="493">
+                  <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#598#662#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="local_logging.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="local_logging.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/genderumrevelio/data_logging/local_logging.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="374">
@@ -83,11 +97,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="russian.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="russian.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/russian.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="697">
-                  <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+                <state relative-caret-position="629">
+                  <caret line="37" column="15" lean-forward="true" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
                   <folding>
                     <element signature="e#459#496#0" expanded="true" />
                   </folding>
@@ -127,10 +141,11 @@
         <option value="$PROJECT_DIR$/src/__init__.py" />
         <option value="$PROJECT_DIR$/src/networkconfigs/lstmtest.py" />
         <option value="$PROJECT_DIR$/src/genderumrevelio/skeleton.py" />
-        <option value="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py" />
         <option value="$PROJECT_DIR$/src/genderumrevelio/data/plot.py" />
         <option value="$PROJECT_DIR$/src/genderumrevelio/data_logging/local_logging.py" />
         <option value="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/russian.py" />
+        <option value="$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py" />
+        <option value="$PROJECT_DIR$/src/genderumrevelio/main.py" />
       </list>
     </option>
   </component>
@@ -696,9 +711,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -846,13 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/genderumrevelio/data/plot.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -863,10 +871,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py">
+    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/cnntest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="63" column="35" lean-forward="true" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+        <state relative-caret-position="1054">
+          <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+          <folding>
+            <element signature="e#176#213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/russian.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="15" lean-forward="true" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
           <folding>
             <element signature="e#459#496#0" expanded="true" />
           </folding>
@@ -883,20 +901,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/cnntest.py">
+    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="62" column="47" lean-forward="true" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+        <state relative-caret-position="493">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding>
-            <element signature="e#176#213#0" expanded="true" />
+            <element signature="e#598#662#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/russian.py">
+    <entry file="file://$PROJECT_DIR$/src/genderumrevelio/networkconfigs/lstmtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="561">
+          <caret line="60" column="67" lean-forward="false" selection-start-line="60" selection-start-column="67" selection-end-line="60" selection-end-column="67" />
           <folding>
             <element signature="e#459#496#0" expanded="true" />
           </folding>

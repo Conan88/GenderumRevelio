@@ -34,7 +34,7 @@ def lstm_run(load_data):
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
+    maxlen = 1500  # cut texts after this number of words (among top max_features most common words)
     batch_size = 164
 
     print('Loading data...')
