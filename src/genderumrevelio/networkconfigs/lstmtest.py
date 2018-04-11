@@ -27,14 +27,14 @@ from keras import optimizers
 
 def lstm_run(load_data):
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     sess = tf.Session(config = config)
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 1500  # cut texts after this number of words (among top max_features most common words)
+    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
     batch_size = 164
 
     print('Loading data...')
@@ -50,20 +50,20 @@ def lstm_run(load_data):
 
     print('Build model...')
     model = Sequential()
-    model.add(Embedding(max_features, 1000))
-    model.add(Bidirectional(LSTM(200, return_sequences=True)))
-    model.add(Bidirectional(LSTM(200)))
+    model.add(Embedding(max_features, 200))
+    model.add(Bidirectional(LSTM(300, return_sequences=True)))
+    model.add(Bidirectional(LSTM(300)))
     model.add(Dense(200, activation='relu'))
     model.add(Dense(150, activation='relu'))
     model.add(Dense(50, activation='relu'))
     model.add(Dropout(0.3))
-    #model.add(Dense(1, activation='sigmoid'))
-    model.add(tf.keras.backend.round(Dense(1, activation='sigmoid')))
+    model.add(Dense(1, activation='sigmoid'))
+    #model.add(tf.keras.backend.round(Dense(1, activation='sigmoid')))
 
-    adam = optimizers.Adam(lr=0.1)
+    adam = optimizers.Adam(lr=0.01)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
-                  optimizer='adam',
+                  optimizer=adam,
                   metrics=['accuracy'])
 
     print('Train...')
