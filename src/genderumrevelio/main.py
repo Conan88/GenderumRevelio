@@ -24,7 +24,7 @@ import logging
 
 # Our imports
 from networkconfigs import lstmtest, russian
-from datasets.load_files import load_data
+from datasets.load_files import load_blogs
 from data_logging import local_logging
 from data_logging import remote_logging
 
@@ -90,7 +90,7 @@ def main(args):
     _logger.debug("Starting crazy calculations...")
     _logger.info("Script ends here")
 
-    log = lstmtest.lstm_run(load_data())
+    log = lstmtest.lstm_run(load_blogs())
     #  TODO: add timestamp and pass them to logging
     try:
         local_logging.log(log)

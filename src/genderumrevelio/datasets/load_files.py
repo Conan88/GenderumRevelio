@@ -9,31 +9,32 @@ import warnings
 import os
 
 
-def shuffle(path1, path2):
-    man = np.load(path1)
-    woman = np.loed(path2)
-    np.random.shuffle(man)
-    np.random.shuffle(woman)
-    return man, woman
-
+def load_data(path):
+    data = np.load(path)
+    np.random.shuffle(data)
+    return data
 
 def load_blogs(datacut=None, datasplit=None, seed=113, **kwargs):
     # TODO: add datacut and datasplit to input
-    # Legacy support
-    #if 'nb_words' in kwargs:
-    #    warnings.warn('The `nb_words` argument in `load_data` '
-    #                  'has been renamed `num_words`.')
-    #    num_words = kwargs.pop('nb_words')
-    #if kwargs:
-    #    raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
+    #  Legacy support
+    if 'nb_words' in kwargs:
+        warnings.warn('The `nb_words` argument in `load_data` '
+                      'has been renamed `num_words`.')
+        num_words = kwargs.pop('nb_words')
+    if kwargs:
+        raise TypeError('Unrecognized keyword arguments: ' + str(kwargs))
 
     # Path's to numpy files
-    man_data_path = '../data/'
-    woman_data_path = ''
+    man_data_path = './data/bookdata/menbookparagraphtokenized.npy'
+    woman_data_path = './data/bookdata/womenbookparagraphtokenized.npy'
 
     # Load the data and shuffle it
-    man = lambda man: np.random.shuffle(np.load(man_data_path))
-    woman = lambda woman: np.random.shuffle(np.load(woman_data_path))
+    man = []
+    woman = []
+    for item in load_data(man_data_path):
+        man.append(item)
+    for item in load_data(woman_data_path):
+        woman.append(item)
 
     #TODO: could drop data from man and woman before going forward
     # simple way; for i in range(int(len(man)/2)): man.pop(i)
@@ -47,18 +48,18 @@ def load_blogs(datacut=None, datasplit=None, seed=113, **kwargs):
     test_data_woman = woman[int(len(woman) * 0.75):]
 
     # Create labels
-    train_data_labels = [1] * len(training_data_man) + [0] * len(training_data_woman)
+    training_data_labels = [1] * len(training_data_man) + [0] * len(training_data_woman)
     test_data_labels = [1] * len(test_data_man) + [0] * len(test_data_woman)
 
     # Create data lists
     training_data = np.concatenate([training_data_man, training_data_woman])
-    test_data = np.concatinate([test_data_man, test_data_woman])
+    test_data = np.concatenate([test_data_man, test_data_woman])
 
     np.random.seed(seed)
     indices = np.arange(len(training_data))
     np.random.shuffle(indices)
     training_data = training_data[indices]
-    train_data_labels = train_data_labels[indices]
+    training_data_labels = training_data_labels[indices]
 
     indices = np.arange(len(test_data))
     np.random.shuffle(indices)
