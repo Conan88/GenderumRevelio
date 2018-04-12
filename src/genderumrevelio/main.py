@@ -23,7 +23,7 @@ import logging
 #from genderumrevelio import __version__
 
 # Our imports
-from networkconfigs import lstmtest
+from networkconfigs import lstmtest, russian
 from datasets.postdata import load_data
 from data_logging import local_logging
 from data_logging import remote_logging

@@ -16,7 +16,7 @@ from __future__ import print_function
 
 from keras.preprocessing import sequence
 from keras.models import Sequential
-from keras.layers import Dense, Embedding
+from keras.layers import Dense, Embedding, Conv1D, MaxPool1D
 from keras.layers import LSTM, Bidirectional, Dropout
 import os
 
@@ -27,14 +27,14 @@ from keras import optimizers
 
 def lstm_run(load_data):
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     sess = tf.Session(config = config)
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
+    maxlen = 1500  # cut texts after this number of words (among top max_features most common words)
     batch_size = 164
 
     print('Loading data...')
@@ -50,26 +50,27 @@ def lstm_run(load_data):
 
     print('Build model...')
     model = Sequential()
-    model.add(Embedding(max_features, 200))
-    model.add(Bidirectional(LSTM(300, return_sequences=True)))
-    model.add(Bidirectional(LSTM(300)))
-    model.add(Dense(200, activation='relu'))
-    model.add(Dense(150, activation='relu'))
-    model.add(Dense(50, activation='relu'))
-    model.add(Dropout(0.3))
+    model.add(Embedding(max_features, 128))
+    model.add(Conv1D(kernel_size=30, filters=3, activation="relu"))
+    model.add(MaxPool1D(pool_size=2))
+    model.add(Conv1D(kernel_size=30, filters=3, activation="relu"))
+    model.add(MaxPool1D(pool_size=2))
+    model.add(LSTM(30))
+    model.add(Dropout(0.5))
+    model.add(Dense(10, activation='tanh'))
+    model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
-    #model.add(tf.keras.backend.round(Dense(1, activation='sigmoid')))
 
     adam = optimizers.Adam(lr=0.01)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
-                  optimizer=adam,
+                  optimizer='adam',
                   metrics=['accuracy'])
 
     print('Train...')
     history_callback = model.fit(x_train, y_train,
               batch_size=batch_size,
-              epochs=10,
+              epochs=20,
               validation_data=(x_test, y_test))
     score, acc = model.evaluate(x_test, y_test,
                                 batch_size=batch_size)
