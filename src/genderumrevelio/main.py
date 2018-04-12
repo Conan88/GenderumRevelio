@@ -24,7 +24,7 @@ import logging
 
 # Our imports
 from networkconfigs import lstmtest, russian
-from datasets.postdata import load_data
+from datasets.load_files import load_data
 from data_logging import local_logging
 from data_logging import remote_logging
 

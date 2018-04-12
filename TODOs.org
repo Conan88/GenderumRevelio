@@ -17,20 +17,22 @@ Trying tanh as activation, based on tips for Morten Goodwin.
    That is interesting to see, and this as maybe bin one of our big errors.
 
 * TODO Learning rates
-- Learning rate [5/7]
+- Learning rate [7/7]
   - [X] 0.1 fail(low acc)
   - [X] 0.01 fail(low acc)
-  - [ ] 0.001
+  - [X] 0.001
   - [X] 0.0001 best til now
-  - [ ] 0.00001
+  - [X] 0.00001
   - [X] 0.000001 fail
   - [X] 0.0000001 fail
 
-- More tests [0/4]
+- More tests [0/6]
   - [ ] only one gender
   - [ ] half the blog data
   - [ ] book data 
-  - [ ] more lstm layers 
+  - [ ] more lstm layers
+  - [ ] mixing, train on blogs, validation on books
+  - [ ] one hot encoded data
 * Tested configurations
 ** LSTM model
 *** Spec 1 
