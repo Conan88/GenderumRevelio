@@ -1,6 +1,6 @@
 import numpy as np
 
-path = r"../data/hot_numpy_posts.npy"
+path = r"../../data/hot_numpy_sentences.npy"
 
 with open(path, "rb") as file:
     data = np.load(file)
