@@ -15,22 +15,21 @@ def load_data(path):
         np.random.shuffle(data)
     return data
 
-def load_blogs(datacut=1, datasplit=0.75, seed=113, **kwargs):
+def load_blogs(datacut=1, datasplit=0.75, load_dataset='book', activation='sigmoid', seed=113, **kwargs):
     # TODO: add datacut and datasplit to input
     # Path's to numpy files
-    man_data_path = './data/bookdata/menbookparagraphtokenized.npy'
-    woman_data_path = './data/bookdata/womenbookparagraphtokenized.npy'
+    if load_dataset == 'book':
+        man_data_path = './data/bookdata/menbookparagraphtokenized.npy'
+        woman_data_path = './data/bookdata/womenbookparagraphtokenized.npy'
+    if load_dataset == 'blog':
+        man_data_path = './data/blogdata/manfile'
+        woman_data_path = './data/blogdata/womanfile'
 
     # Load the data and shuffle it
     man = load_data(man_data_path)
     woman = load_data(woman_data_path)
-    #for item in load_data(man_data_path):
-    #    man.append(item)
-    #for item in load_data(woman_data_path):
-    #    woman.append(item)
 
-    #TODO: could drop data from man and woman before going forward
-    # simple way; for i in range(int(len(man)/2)): man.pop(i)
+    #TODO: check for division by 0 error
 #    assert(datacut = 0, "Division by 0 is not good!"i)
     if datacut != 1:
         for i in range(int(len(man) / datacut)):
@@ -46,8 +45,12 @@ def load_blogs(datacut=1, datasplit=0.75, seed=113, **kwargs):
     test_data_woman = woman[int(len(woman) * datasplit):]
 
     # Create labels
-    training_data_labels = np.array([1] * len(training_data_man) + [0] * len(training_data_woman))
-    test_data_labels = np.array([1] * len(test_data_man) + [0] * len(test_data_woman))
+    if activation == 'sigmoid':
+        training_data_labels = np.array([1] * len(training_data_man) + [0] * len(training_data_woman))
+        test_data_labels = np.array([1] * len(test_data_man) + [0] * len(test_data_woman))
+    if activation == 'softmax':
+        training_data_labels = np.array([[1,0]] * len(training_data_man) + [[0,1]] * len(training_data_woman))
+        test_data_labels = np.array([[1,0]] * len(test_data_man) + [[0,1]] * len(test_data_woman))
 
     # Create data lists
     training_data = np.concatenate([training_data_man, training_data_woman])
@@ -70,22 +73,3 @@ def load_blogs(datacut=1, datasplit=0.75, seed=113, **kwargs):
     test_data = test_data[indices]
     test_data_labels = test_data_labels[indices]
     return (training_data, training_data_labels), (test_data, test_data_labels)
-
-    #with np.load(path) as f:
-    #    traindata, trainlabels = f['traindata'], f['trainlabels']
-    #    testingdata, testlabels = f['testingdata'], f['testinglabels']
-
-    #np.random.seed(seed)
-    #indices = np.arange(len(traindata))
-    #np.random.shuffle(indices)
-    #traindata = traindata[indices]
-    #trainlabels = trainlabels[indices]
-
-    #indices = np.arange(len(testingdata))
-    #np.random.shuffle(indices)
-    #testingdata = testingdata[indices]
-    #testlabels = testlabels[indices]
-    #return (traindata, trainlabels), (testingdata, testlabels)
-
-def load_books():
-    pass

@@ -90,7 +90,7 @@ def main(args):
     _logger.debug("Starting crazy calculations...")
     _logger.info("Script ends here")
 
-    log = lstmtest.lstm_run(load_blogs())
+    log = lstmtest.lstm_run(load_blogs(load_dataset='book', activation='softmax'))
     #  TODO: add timestamp and pass them to logging
     try:
         local_logging.log(log)
