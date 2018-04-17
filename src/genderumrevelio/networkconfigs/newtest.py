@@ -1,34 +1,16 @@
-
-'''Trains an LSTM model on the IMDB sentiment classification task.
-
-The dataset is actually too small for LSTM to be of any advantage
-compared to simpler, much faster methods such as TF-IDF + LogReg.
-
-# Notes
-
-- RNNs are tricky. Choice of batch size is important,
-choice of loss and optimizer is critical, etc.
-Some configurations won't converge.
-
-- LSTM loss decrease patterns during training can be quite different
-from what you see with CNNs/MLPs/etc.
+'''
+https://ac.els-cdn.com/S1877050916326849/1-s2.0-S1877050916326849-main.pdf?_tid=53ad983e-14dc-4144-9b54-048ce6a7e42f&acdnat=1521637277_a6834ff770e8fe62aad6f00f402c76cf
 '''
 from __future__ import print_function
 
 from keras.preprocessing import sequence
 from keras.models import Sequential
-from keras.layers import Dense, Embedding
+from keras.layers import Dense, Embedding, Conv1D, MaxPool1D
 from keras.layers import LSTM, Bidirectional, Dropout
 import os
 
 from keras import backend as K
 import tensorflow as tf
-from keras import optimizers
-
-def get_loadinfo():
-    #datacut=1, datacut=0.75, load_dataset="book", activcation='sigmoid', seed=113, **kwargs
-    return (0.2, 0.75, "blog", "sigmoid")
-
 
 def lstm_run(load_data):
 
@@ -39,8 +21,8 @@ def lstm_run(load_data):
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
-    batch_size = 32
+    maxlen = 200  # cut texts after this number of words (among top max_features most common words)
+    batch_size = 164
 
     print('Loading data...')
     (x_train, y_train), (x_test, y_test) = load_data
@@ -55,31 +37,33 @@ def lstm_run(load_data):
 
     print('Build model...')
     model = Sequential()
-    model.add(Embedding(max_features, 50))
-    model.add(Bidirectional(LSTM(50)))
-    model.add(Dropout(0.2))
-    model.add(Dense(20, activation='relu'))
-    model.add(Dense(40, activation='relu'))
-    model.add(Dense(30, activation='relu'))
-    model.add(Dense(5, activation='relu'))
-    model.add(Dropout(0.2))
+    model.add(Embedding(max_features, 128))
+    model.add(Conv1D(kernel_size=30, filters=2, activation="relu"))
+    model.add(MaxPool1D(pool_size=2))
+    model.add(Conv1D(kernel_size=30, filters=2, activation="relu"))
+    model.add(MaxPool1D(pool_size=2))
+    model.add(Conv1D(kernel_size=30, filters=2, activation="relu"))
+    model.add(MaxPool1D(pool_size=2))
+    model.add(LSTM(30))
+    model.add(Dropout(0.5))
+    model.add(Dense(10, activation='tanh'))
+    model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
-    #model.add(tf.keras.backend.round(Dense(1, activation='sigmoid')))
 
-    adam = optimizers.Adam(lr=0.01)
     # try using different optimizers and different optimizer configs
     model.compile(loss='binary_crossentropy',
-                  optimizer=adam,
+                  optimizer='adam',
                   metrics=['accuracy'])
 
     print('Train...')
     history_callback = model.fit(x_train, y_train,
               batch_size=batch_size,
-              epochs=10,
+              epochs=20,
               validation_data=(x_test, y_test))
     score, acc = model.evaluate(x_test, y_test,
                                 batch_size=batch_size)
     print('Test score:', score)
     print('Test accuracy:', acc)
 
-    return (history_callback.history, acc, score, model, os.path.abspath(__file__))
+    return (history_callback.history, acc, score, model)
+

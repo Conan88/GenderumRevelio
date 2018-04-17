@@ -27,19 +27,19 @@ from keras import optimizers
 
 def get_loadinfo():
     #datacut=1, datacut=0.75, load_dataset="book", activcation='sigmoid', seed=113, **kwargs
-    return (0.2, 0.75, "blog", "sigmoid")
+    return (1, 0.5, "book", "sigmoid")
 
 
 def lstm_run(load_data):
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "1"
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
     sess = tf.Session(config = config)
     K.set_session(sess)
 
     max_features = 20000
-    maxlen = 500  # cut texts after this number of words (among top max_features most common words)
+    maxlen = 1200  # cut texts after this number of words (among top max_features most common words)
     batch_size = 32
 
     print('Loading data...')
@@ -57,12 +57,12 @@ def lstm_run(load_data):
     model = Sequential()
     model.add(Embedding(max_features, 50))
     model.add(Bidirectional(LSTM(50)))
-    model.add(Dropout(0.2))
+    model.add(Dropout(0.3))
     model.add(Dense(20, activation='relu'))
     model.add(Dense(40, activation='relu'))
     model.add(Dense(30, activation='relu'))
     model.add(Dense(5, activation='relu'))
-    model.add(Dropout(0.2))
+    model.add(Dropout(0.3))
     model.add(Dense(1, activation='sigmoid'))
     #model.add(tf.keras.backend.round(Dense(1, activation='sigmoid')))
 

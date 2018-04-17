@@ -22,8 +22,8 @@ def load_blogs(datacut=1, datasplit=0.75, load_dataset='book', activation='sigmo
         man_data_path = './data/bookdata/menbookparagraphtokenized.npy'
         woman_data_path = './data/bookdata/womenbookparagraphtokenized.npy'
     if load_dataset == 'blog':
-        man_data_path = './data/blogdata/manfile'
-        woman_data_path = './data/blogdata/womanfile'
+        man_data_path = './data/blogdata/menblogposttokenized.npy'
+        woman_data_path = './data/blogdata/womenblogposttokenized.npy'
 
     # Load the data and shuffle it
     man = load_data(man_data_path)
@@ -32,10 +32,10 @@ def load_blogs(datacut=1, datasplit=0.75, load_dataset='book', activation='sigmo
     #TODO: check for division by 0 error
 #    assert(datacut = 0, "Division by 0 is not good!"i)
     if datacut != 1:
-        for i in range(int(len(man) / datacut)):
-            man.pop(i)
-        for i in range(int(len(woman) / datacut)):
-            woman.pop(i)
+        for i in range(int(len(man) * datacut)):
+            man = man[1:]
+        for i in range(int(len(woman) * datacut)):
+            woman = woman[1:]
     # Split data 75% training data
     training_data_man = man[0:int(len(man) * datasplit)]
     training_data_woman = woman[0:int(len(woman) * datasplit)]
