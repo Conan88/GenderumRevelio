@@ -1,3 +1,4 @@
+#+TODO: TODO(t) BUG(b) | DONE(d) CANCEL(c) 
 * Notes
 [[file:src/genderumrevelio/networkconfigs/lstmtest.py][lstm config]]
 Learning rate at 0.1 and 0.0000001 seams to be too much. 
