@@ -23,7 +23,7 @@ import logging
 #from genderumrevelio import __version__
 
 # Our imports
-from networkconfigs import lstmtest, russian, lstm_v2, lstm_v3, lstm_v4
+from networkconfigs import lstmtest, russian, lstm_v2, lstm_v3, lstm_v4, gaussian_naive_bayes
 from datasets.load_files import load_blogs
 from data_logging import local_logging
 from data_logging import remote_logging
@@ -90,7 +90,9 @@ def main(args):
     _logger.debug("Starting crazy calculations...")
     _logger.info("Script ends here")
 
-    log = lstm_v2.lstm_run(load_blogs(load_dataset='blog', activation='sigmoid', datasplit=0.75, datacut=0.2))
+#    log = lstm_v2.lstm_run(load_blogs(load_dataset='blog', activation='sigmoid', datasplit=0.75, datacut=0.2))
+    gaussian_naive_bayes(load_blogs(load_dataset='book', datasplit=0.75))
+
     #  TODO: add timestamp and pass them to logging
     try:
         local_logging.log(log)
