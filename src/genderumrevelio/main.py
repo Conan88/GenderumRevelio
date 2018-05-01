@@ -91,23 +91,24 @@ def main(args):
     _logger.info("Script ends here")
 
 #    log = lstm_v2.lstm_run(load_blogs(load_dataset='blog', activation='sigmoid', datasplit=0.75, datacut=0.2))
-    gaussian_naive_bayes(load_blogs(load_dataset='book', datasplit=0.75))
+    gaussian_naive_bayes.run_gaussian(load_blogs(load_dataset='book', datasplit=0.75))
+    #gaussian_naive_bayes.testing(load_blogs(load_dataset='book', datasplit=0.75))
 
     #  TODO: add timestamp and pass them to logging
-    try:
-        local_logging.log(log)
-    except Exception as e:
-        print("Local error:")
-        print("args:", e.args)
-        print("traceback:", e.with_traceback)
-        print("e:", e)
-    try:
-        remote_logging.remote_log(log)
-    except Exception as e:
-        print("Remote error:")
-        print("args:", e.args)
-        print("traceback:", e.with_traceback)
-        print("e:", e)
+    #try:
+    #    local_logging.log(log)
+    #except Exception as e:
+    #    print("Local error:")
+    #    print("args:", e.args)
+    #    print("traceback:", e.with_traceback)
+    #    print("e:", e)
+    #try:
+    #    remote_logging.remote_log(log)
+    #except Exception as e:
+    #    print("Remote error:")
+    #    print("args:", e.args)
+    #    print("traceback:", e.with_traceback)
+    #    print("e:", e)
 """
     log = lstm_v3.lstm_run(load_blogs(load_dataset='book', activation='sigmoid', datasplit=0.5))
     #  TODO: add timestamp and pass them to logging
