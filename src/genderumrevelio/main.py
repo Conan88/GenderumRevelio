@@ -23,7 +23,7 @@ import logging
 #from genderumrevelio import __version__
 
 # Our imports
-from networkconfigs import lstmtest, russian
+from networkconfigs import lstmtest, russian, lstm_v2, lstm_v3, lstm_v4, gaussian_naive_bayes
 from datasets.load_files import load_blogs
 from data_logging import local_logging
 from data_logging import remote_logging
@@ -90,7 +90,27 @@ def main(args):
     _logger.debug("Starting crazy calculations...")
     _logger.info("Script ends here")
 
-    log = lstmtest.lstm_run(load_blogs(load_dataset='book', activation='softmax'))
+#    log = lstm_v2.lstm_run(load_blogs(load_dataset='blog', activation='sigmoid', datasplit=0.75, datacut=0.2))
+    gaussian_naive_bayes.run_gaussian(load_blogs(load_dataset='book', datasplit=0.75))
+    #gaussian_naive_bayes.testing(load_blogs(load_dataset='book', datasplit=0.75))
+
+    #  TODO: add timestamp and pass them to logging
+    #try:
+    #    local_logging.log(log)
+    #except Exception as e:
+    #    print("Local error:")
+    #    print("args:", e.args)
+    #    print("traceback:", e.with_traceback)
+    #    print("e:", e)
+    #try:
+    #    remote_logging.remote_log(log)
+    #except Exception as e:
+    #    print("Remote error:")
+    #    print("args:", e.args)
+    #    print("traceback:", e.with_traceback)
+    #    print("e:", e)
+"""
+    log = lstm_v3.lstm_run(load_blogs(load_dataset='book', activation='sigmoid', datasplit=0.5))
     #  TODO: add timestamp and pass them to logging
     try:
         local_logging.log(log)
@@ -107,7 +127,23 @@ def main(args):
         print("traceback:", e.with_traceback)
         print("e:", e)
 
-
+    log = lstm_v4.lstm_run(load_blogs(load_dataset='book', activation='sigmoid', datasplit=0.5))
+    #  TODO: add timestamp and pass them to logging
+    try:
+        local_logging.log(log)
+    except Exception as e:
+        print("Local error:")
+        print("args:", e.args)
+        print("traceback:", e.with_traceback)
+        print("e:", e)
+    try:
+        remote_logging.remote_log(log)
+    except Exception as e:
+        print("Remote error:")
+        print("args:", e.args)
+        print("traceback:", e.with_traceback)
+        print("e:", e)
+"""
 def run():
     """Entry point for console_scripts
     """

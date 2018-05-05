@@ -1,3 +1,4 @@
+#+TODO: TODO(t) BUG(b) | DONE(d) CANCEL(c) 
 * Notes
 [[file:src/genderumrevelio/networkconfigs/lstmtest.py][lstm config]]
 Learning rate at 0.1 and 0.0000001 seams to be too much. 
@@ -11,11 +12,14 @@ Learning rate at 0.0001 has bin the best up to now. Results are about 54%.
 
 Trying tanh as activation, based on tips for Morten Goodwin.
 
-
+** Naive Bayes
+Naive bayes is accurate about 51% of the time. This is much worse then our own classefier with keras, and deep learning. 
 ** Maxlen
-   Seams like maxlen change form 80 to 1000 has improbed the accuracy cuite a bit!
-   That is interesting to see, and this as maybe bin one of our big errors.
+Seams like maxlen change form 80 to 1000 has improbed the accuracy cuite a bit!
+That is interesting to see, and this as maybe bin one of our big errors.
 
+* TODO Naive Bayes
+- Test naive bayes with keras imdb example
 * TODO Learning rates
 - Learning rate [7/7]
   - [X] 0.1 fail(low acc)
